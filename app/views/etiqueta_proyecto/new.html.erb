@@ -1,0 +1,9 @@
+<h1>Etiqueta Tu Proyecto</h1>
+<p>
+  <% @etiqueta.each do |e|   %>
+ 
+    <%= e.tipo %>
+    <%= check_box_tag "car_ids[#{e.id}]" %>
+</p> 
+
+  <% end %>

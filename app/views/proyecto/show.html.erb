@@ -1,0 +1,45 @@
+<% p_user= @proyecto.idusuario %>
+<% user = User.find_by_id(p_user)%>
+  <b> Creado Por: </b>
+  <%=  user.nombre %>
+  <%=  user.apellido %>
+  <b> Mail de Contacto: </b>
+  <%= user.email  %>
+
+  <h1> <%=@proyecto.titulo%> </h1>
+  <br><%=  @proyecto.resumen %></br>
+
+   <b>Comentarios y Notas...</b>
+    <% @calificacion.each do |p| %>
+ 
+      <% if p.idproyecto == @proyecto.id %>
+        <p> 
+         
+        Nombre Usuario:
+        <%= p.nombreusuario %>
+        </p>
+        <p> 
+        Nota:
+        <%= p.nota %>
+        </p>
+        <p>
+       Comentario: 
+         <%= p.comentario %>
+        </p>
+      <%  end %>
+   <% end %>
+
+<%  $idproyecto = @proyecto.id%>
+<% if  session[:user_id] %>
+ <%if @proyecto.idusuario != session[:user_id] %>
+
+  <%=  link_to "calificar",ingresocalificacion_url %>
+ <% else %>
+  <% @calificacion2.each do |f| %>
+     <%  if f.idproyecto == @proyecto.id %>
+         <%= f.nota %> 
+     <% end %>
+  <% end %>    
+        
+ <%end%>
+<%end%>
